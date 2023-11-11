@@ -11,6 +11,7 @@ WORKDIR /app
 RUN git clone https://github.com/Oteranga/Proyecto-Cloud.git
 
 # Install any additional dependencies required by your project
+RUN python3 -m pip install --upgrade pip
 RUN pip install -r /app/Proyecto-Cloud/requirements.txt
 
 # Expose the port your application will run on
