@@ -25,7 +25,6 @@ dask==2023.4.1
 debugpy==1.6.7
 decorator==5.1.1
 docopt==0.6.2
-docutils @ file:///private/tmp/docutils-20230831-5903-jytmsf/docutils-0.20.1
 duckdb==0.7.1
 exceptiongroup==1.1.1
 executing==1.2.0
