@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: webapp
-        image: tensorflow/tensorflow:latest
+        image: python:3.9
         ports:
         - containerPort: 9000
