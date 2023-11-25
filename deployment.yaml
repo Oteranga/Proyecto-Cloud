@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: webapp
-        image: python:3.9
+        image: prediction-model:v1
         ports:
-        - containerPort: 9000
+        - containerPort: 8080
