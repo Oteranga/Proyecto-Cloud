@@ -24,16 +24,23 @@ from keras.layers import Dense, LSTM
 from flask import send_file
 from io import BytesIO
 import base64
+import requests
 
-def get_ticker_symbol(company_name):
-    # Use yfinance to get the ticker symbol for the given company name
-    info = yf.Ticker(company_name)
-    return info.info['symbol']
+def get_ticker (company_name):
+    url = "https://query2.finance.yahoo.com/v1/finance/search"
+    user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"
+    params = {"q": company_name, "quotes_count": 1, "country": "United States"}
+
+    res = requests.get(url=url, params=params, headers={'User-Agent': user_agent})
+    data = res.json()
+
+    company_code = data['quotes'][0]['symbol']
+    return company_code
 
 
 def get_prediction(month, day, company):
     # get the stock data
-    df = pdr.get_data_yahoo(get_ticker_symbol(company), start='2016-01-01', end=datetime.now())
+    df = pdr.get_data_yahoo(get_ticker(company), start='2016-01-01', end=datetime.now())
     y = df['Close'].fillna(method='ffill')
     y = y.values.reshape(-1, 1)
 

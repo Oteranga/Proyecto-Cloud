@@ -8,6 +8,9 @@ def home():
     return render_template('index.html')
 
 default_companies = ["Netflix", "Apple", "Amazon"]
+@app.route('/get_companies', methods=['GET'])
+def get_companies():
+    return jsonify(default_companies)
 
 @app.route('/predict', methods=['POST'])
 def predict():

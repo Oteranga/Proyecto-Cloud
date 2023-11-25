@@ -5,6 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="styles.css">
     <title>Stock Price Prediction</title>
+    <script>
+        // JavaScript to update dropdown options on page load
+        document.addEventListener('DOMContentLoaded', function () {
+            fetch("/get_companies")  // Endpoint to get company names dynamically
+                .then(response => response.json())
+                .then(data => {
+                    const dropdown = document.getElementById('dropdown');
+                    dropdown.innerHTML = "";  // Clear existing options
+
+                    data.forEach(option => {
+                        const newOption = document.createElement('option');
+                        newOption.value = option;
+                        newOption.textContent = option;
+                        dropdown.appendChild(newOption);
+                    });
+                })
+                .catch(error => console.error('Error fetching companies:', error));
+        });
+    </script>
 </head>
 <body>
     <h1 class="title">Stock Price Prediction</h1>
