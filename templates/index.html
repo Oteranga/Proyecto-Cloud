@@ -3,15 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="styles.css">
     <title>Stock Price Prediction</title>
 </head>
 <body>
-    <h1>Stock Price Prediction</h1>
+    <h1 class="title">Stock Price Prediction</h1>
 
     <form method="post" action="/predict">
+        <h2>Prediction company info:</h2>
+        <label for="dropdown">Select a company:</label>
+        <select name="dropdown" id="dropdown">
+            {% for option in dropdown_options %}
+                <option value="{{ option }}">{{ option }}</option>
+            {% endfor %}
+        </select>
+        <br>
+        <h4 class="question">Did not find what you were looking for? </h4>
+        <label for="new_company">Add a new company:</label>
+        <input type="text" name="new_company">
+        <br>
+
+        <h2>Prediction date info:</h2>
+        <br>
         <label for="feature1">Month:</label>
         <input type="text" name="feature1" required>
-        <br>
         <label for="feature2">Day:</label>
         <input type="text" name="feature2" required>
         <br>
@@ -19,7 +34,9 @@
     </form>
 
     {% if img_data %}
-        <img src="data:image/png;base64,{{ img_data }}" alt="Matplotlib Plot">
+        <div class="image-container">
+            <img src="data:image/png;base64,{{ img_data }}" alt="Matplotlib Plot">
+        </div>
     {% endif %}
 
     {% if error %}
